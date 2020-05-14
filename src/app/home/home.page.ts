@@ -13,15 +13,17 @@ export class HomePage {
 
   Scan(){
     this.devices = [];
-    this.ble.scan([],15).subscribe(
+    this.ble.startScan([]).subscribe(
       device => this.onDeviceDiscovered(device)
     );
   }
+  
   onDeviceDiscovered(device){
     console.log('Discovered' + JSON.stringify(device,null,2));
     this.ngZone.run(()=>{
       this.devices.push(device)
-      console.log(device)
+      //console.log(device)
+      console.log("DEVICES: " + JSON.stringify(this.devices,null,2));
     })
   }
 
