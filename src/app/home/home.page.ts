@@ -12,6 +12,10 @@ export class HomePage {
 
   constructor(private ble: BLE, private ngZone: NgZone) {}
 
+  ionViewDidEnter(){
+    this.Scan()
+  }
+
   Scan() {
     this.devices = [];
     this.ble.startScan([]).subscribe((device) => {
