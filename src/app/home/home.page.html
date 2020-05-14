@@ -11,7 +11,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-item color="blue">
+    <ion-label>
+      NºDEVICES {{deviceNum}}
+    </ion-label>
+  </ion-item>
+  <ion-list> 
     <ion-card-content ion-item *ngFor="let device of devices">
       <p>{{device.name || 'Unnamed'}}</p>
       <p>{{device.id}}</p>
