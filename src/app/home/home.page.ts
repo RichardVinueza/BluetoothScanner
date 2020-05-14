@@ -12,28 +12,21 @@ export class HomePage {
 
   constructor(private ble: BLE, private ngZone: NgZone) {}
 
-  ionViewDidEnter(){
-    this.Scan()
+  ionViewDidEnter() {
+    this.Scan();
   }
 
   Scan() {
     this.devices = [];
-    this.ble.startScan([]).subscribe((device) => {
-      console.log("Discovered" + JSON.stringify(device, null, 2));
-      this.ngZone.run(() => {
-        this.deviceNum = this.devices.push(device);
-        //console.log(device)
-        console.log("DEVICES: " + JSON.stringify(this.devices, null, 2));
-      });
-    });
+    this.ble.startScan([]).subscribe((device) => {this.onDeviceDiscovered(device)});
   }
 
-  // onDeviceDiscovered(device) {
-  //   console.log("Discovered" + JSON.stringify(device, null, 2));
-  //   this.ngZone.run(() => {
-  //     this.devices.push(device);
-  //     //console.log(device)
-  //     console.log("DEVICES: " + JSON.stringify(this.devices, null, 2));
-  //   });
-  // }
+  onDeviceDiscovered(device) {
+    console.log("Discovered" + JSON.stringify(device));
+    this.ngZone.run(() => {
+      this.deviceNum = this.devices.push(device);
+      //console.log(device)
+      console.log("DEVICES: " + JSON.stringify(this.devices));
+    });
+  }
 }
